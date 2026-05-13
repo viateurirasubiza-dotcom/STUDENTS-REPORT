@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Report System</title>
+
+<style>
+/* FUTURISTIC LIVE NEON LOGIN */
+
+body{
+font-family:Arial;
+background:#050510;
+margin:0;
+padding:20px;
+overflow-x:hidden;
+position:relative;
+min-height:100vh;
+color:white;
+}
+
+/* LIVE PARTICLES */
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:200%;
+height:200%;
+background:
+radial-gradient(circle,#00ffff88 2px,transparent 3px),
+radial-gradient(circle,#ff00ff88 2px,transparent 3px),
+radial-gradient(circle,#00ff8888 2px,transparent 3px);
+background-size:120px 120px;
+animation:particlesMove 25s linear infinite;
+z-index:-2;
+opacity:0.5;
+}
+
+body::after{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:
+linear-gradient(120deg,#000000ee,#050520ee,#000000ee);
+z-index:-3;
+}
+
+/* PARTICLES ANIMATION */
+@keyframes particlesMove{
+0%{
+transform:translate(0,0);
+}
+100%{
+transform:translate(-300px,-300px);
+}
+}
+
+/* LOGIN BOX */
+.login-box{
+max-width:420px;
+margin:80px auto;
+padding:35px;
+border-radius:20px;
+background:rgba(10,10,30,0.75);
+backdrop-filter:blur(12px);
+border:1px solid #00ffff55;
+box-shadow:
+0 0 15px #00ffff88,
+0 0 35px #00ffff55,
+0 0 60px #ff00ff33;
+text-align:center;
+position:relative;
+overflow:hidden;
+}
+
+/* NEON BORDER EFFECT */
+.login-box::before{
+content:"";
+position:absolute;
+top:-50%;
+left:-50%;
+width:200%;
+height:200%;
+background:conic-gradient(
+from 0deg,
+transparent,
+#00ffff,
+transparent,
+#ff00ff,
+transparent
+);
+animation:rotateBorder 6s linear infinite;
+z-index:-1;
+}
+
+.login-box::after{
+content:"";
+position:absolute;
+inset:3px;
+background:rgba(5,5,20,0.95);
+border-radius:18px;
+z-index:-1;
+}
+
+@keyframes rotateBorder{
+100%{
+transform:rotate(360deg);
+}
+}
+
+/* TITLE */
+.login-box h2{
+font-size:28px;
+margin-bottom:25px;
+color:#00ffff;
+text-shadow:
+0 0 10px #00ffff,
+0 0 20px #00ffff;
+letter-spacing:2px;
+}
+
+/* INPUTS */
+.login-box input{
+width:90%;
+padding:14px;
+margin:10px 0;
+border:none;
+outline:none;
+border-radius:10px;
+background:#0d0d25;
+color:white;
+font-size:15px;
+box-shadow:
+inset 0 0 10px #00ffff33,
+0 0 8px #00ffff44;
+transition:0.3s;
+}
+
+.login-box input:focus{
+transform:scale(1.03);
+box-shadow:
+0 0 15px #00ffff,
+0 0 30px #00ffff88;
+}
+
+/* BUTTON */
+.login-box button{
+width:95%;
+padding:14px;
+margin-top:15px;
+border:none;
+border-radius:12px;
+background:linear-gradient(90deg,#00ffff,#ff00ff);
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+box-shadow:
+0 0 15px #00ffff88,
+0 0 25px #ff00ff55;
+}
+
+.login-box button:hover{
+transform:translateY(-3px) scale(1.02);
+box-shadow:
+0 0 20px #00ffff,
+0 0 40px #ff00ff;
+}
+
+/* MAIN CONTAINER */
+.container{
+max-width:1200px;
+margin:auto;
+background:rgba(255,255,255,0.95);
+padding:20px;
+border-radius:10px;
+color:black;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+
+.login-box{
+margin-top:40px;
+padding:25px;
+}
+
+.login-box h2{
+font-size:22px;
+}
+
+}
+body{
+font-family:Arial;
+background:#f4f4f4;
+margin:0;
+padding:20px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:10px;
+}
+
+input,select,button{
+padding:7px;
+margin:4px;
+}
+
+button{
+cursor:pointer;
+}
+
+.report{
+border:3px solid #000;
+padding:15px;
+margin-top:20px;
+background:white;
+}
+
+.header-top{
+text-align:center;
+font-size:20px;
+font-weight:bold;
+color:green;
+}
+
+.sub-header{
+text-align:center;
+font-size:12px;
+margin-bottom:10px;
+}
+
+.line-input{
+display:flex;
+justify-content:space-between;
+gap:10px;
+margin:6px 0;
+font-size:13px;
+font-weight:bold;
+}
+
+.line-input span{
+flex:1;
+border-bottom:1px dotted #000;
+padding-left:5px;
+}
+
+.term-title{
+margin-top:10px;
+background:#eee;
+padding:6px;
+font-weight:bold;
+border-left:5px solid green;
+}
+
+.table-report{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+font-size:11px;
+}
+
+.table-report th,.table-report td{
+border:1px solid #000;
+padding:4px;
+text-align:center;
+white-space:nowrap;
+}
+
+.subject-col{
+text-align:left;
+padding-left:6px;
+}
+
+.action-btn{
+padding:5px 10px;
+border:none;
+color:white;
+}
+
+.view-btn{
+background:green;
+}
+
+.delete-btn{
+background:red;
+}
+
+.login-box{
+max-width:400px;
+margin:80px auto;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+text-align:center;
+}
+
+.login-box h2{
+margin-bottom:20px;
+}
+
+.logout-btn{
+background:red;
+color:white;
+border:none;
+padding:8px 15px;
+float:right;
+}
+
+@media print{
+body *{
+visibility:hidden;
+}
+
+#report,#report *{
+visibility:visible;
+}
+
+#report{
+position:absolute;
+left:0;
+top:0;
+width:100%;
+background:white;
+}
+
+button{
+display:none !important;
+}
+
+.table-report{
+font-size:10px;
+}
+
+@page{
+size:A4 landscape;
+margin:10mm;
+}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="login-box">
+<h2>Login System</h2>
+
+<input type="text" id="username" placeholder="Username"><br>
+<input type="password" id="password" placeholder="Password"><br>
+
+<button onclick="login()">Login</button>
+
+<p>
+<b></b>  <br>
+<b></b>
+</p>
+</div>
+
+<!-- MAIN SYSTEM -->
+<div id="mainSystem" style="display:none;">
+
+<div class="container">
+
+<button class="logout-btn" onclick="logout()">Logout</button>
+
+<h2>Student Annual Report System</h2>
+
+<input type="text" id="name" placeholder="Student Name">
+
+<select id="class">
+<option value="">Select Class</option>
+<option>P1</option>
+<option>P2</option>
+<option>P3</option>
+<option>P4</option>
+<option>P5</option>
+<option>P6</option>
+<option>S1</option>
+<option>S2</option>
+<option>S3</option>
+<option>S4</option>
+<option>S5</option>
+<option>S6</option>
+</select>
+
+<input type="text" id="sdms" placeholder="SDMS Number">
+
+<select id="term">
+<option value="TERM1">TERM 1</option>
+<option value="TERM2">TERM 2</option>
+<option value="TERM3">TERM 3</option>
+</select>
+
+<h3>Enter Marks</h3>
+
+<div id="marks"></div>
+
+<button onclick="saveStudent()">Save Student</button>
+<button onclick="clearForm()">Clear</button>
+<button onclick="clearAll()">Delete All</button>
+<button onclick="hideReport()">Hide Report</button>
+<button onclick="addSubject()">Add Subject</button>
+
+<h3>Saved Students</h3>
+
+<table border="1" width="100%">
+<tr>
+<th>Name</th>
+<th>Class</th>
+<th>SDMS</th>
+<th>Term</th>
+<th>Action</th>
+</tr>
+
+<tbody id="list"></tbody>
+</table>
+
+<div id="report"></div>
+
+</div>
+</div>
+
+<script>
+
+/* LOGIN SYSTEM */
+
+function login(){
+
+let user=document.getElementById("username").value;
+let pass=document.getElementById("password").value;
+
+if(user==="admin" && pass==="1234"){
+
+localStorage.setItem("loggedIn","true");
+
+document.getElementById("loginPage").style.display="none";
+document.getElementById("mainSystem").style.display="block";
+
+}else{
+alert("Wrong Username or Password");
+}
+}
+
+function logout(){
+
+localStorage.removeItem("loggedIn");
+
+document.getElementById("loginPage").style.display="block";
+document.getElementById("mainSystem").style.display="none";
+}
+
+function checkLogin(){
+
+if(localStorage.getItem("loggedIn")==="true"){
+
+document.getElementById("loginPage").style.display="none";
+document.getElementById("mainSystem").style.display="block";
+
+}else{
+
+document.getElementById("loginPage").style.display="block";
+document.getElementById("mainSystem").style.display="none";
+}
+}
+
+/* REPORT SYSTEM */
+
+const subjects=[
+"MATHEMATICS",
+"ENGLISH",
+"IKINYARWANDA",
+"SCIENCE",
+"SOCIAL STUDIES",
+"FRENCH",
+"P.E",
+"C.A"
+];
+
+function render(){
+
+let html="";
+
+subjects.forEach(sub=>{
+
+let limit=(sub==="P.E"||sub==="C.A")?10:50;
+
+html+=`
+<div>
+<b>${sub}</b>
+
+Mid/${limit}
+<input type="number" id="${sub}_mid" min="0" max="${limit}" style="width:60px">
+
+Exam/${limit}
+<input type="number" id="${sub}_exam" min="0" max="${limit}" style="width:60px">
+</div>
+`;
+
+});
+
+document.getElementById("marks").innerHTML=html;
+}
+
+function remark(avg){
+
+if(avg>=80) return "Excellent";
+if(avg>=70) return "Very Good";
+if(avg>=60) return "Good";
+if(avg>=50) return "Pass";
+
+return "Fail";
+}
+
+function saveStudent(){
+
+let name=document.getElementById("name").value.trim();
+let cls=document.getElementById("class").value;
+let sdms=document.getElementById("sdms").value.trim();
+let term=document.getElementById("term").value;
+
+if(name===""||cls===""){
+alert("Enter student name and class");
+return;
+}
+
+let students=JSON.parse(localStorage.getItem("students")||"[]");
+
+let data={
+id:Date.now()+Math.random(),
+name:name,
+class:cls,
+sdms:sdms,
+term:term,
+marks:{}
+};
+
+for(let sub of subjects){
+
+let mid=+document.getElementById(sub+"_mid").value||0;
+let exam=+document.getElementById(sub+"_exam").value||0;
+
+let max=(sub==="P.E"||sub==="C.A")?10:50;
+
+if(mid>max||exam>max){
+
+alert(sub+" max is "+max+"/"+max);
+return;
+}
+
+data.marks[sub]={mid,exam};
+}
+
+students.push(data);
+
+localStorage.setItem("students",JSON.stringify(students));
+
+load();
+
+clearForm();
+
+alert("Saved Successfully");
+}
+
+function load(){
+
+let students=JSON.parse(localStorage.getItem("students")||"[]");
+
+let html="";
+
+students.forEach(s=>{
+
+html+=`
+<tr>
+
+<td>${s.name}</td>
+<td>${s.class}</td>
+<td>${s.sdms||"-"}</td>
+<td>${s.term}</td>
+
+<td>
+<button class="action-btn view-btn" onclick="view(${s.id})">View</button>
+
+<button class="action-btn delete-btn" onclick="deleteStudent(${s.id})">Delete</button>
+</td>
+
+</tr>
+`;
+
+});
+
+document.getElementById("list").innerHTML=html;
+}
+
+function deleteStudent(id){
+
+let students=JSON.parse(localStorage.getItem("students")||"[]");
+
+students=students.filter(x=>x.id!=id);
+
+localStorage.setItem("students",JSON.stringify(students));
+
+load();
+
+document.getElementById("report").innerHTML="";
+}
+
+function clearAll(){
+
+if(confirm("Delete all students?")){
+
+localStorage.removeItem("students");
+
+load();
+
+document.getElementById("report").innerHTML="";
+}
+}
+
+function total(rec){
+
+let t=0;
+
+subjects.forEach(sub=>{
+
+let m=rec.marks[sub];
+
+t+=(m.mid||0)+(m.exam||0);
+
+});
+
+return t;
+}
+
+function rank(students,cls,terms){
+
+let filtered=students.filter(x=>x.class===cls);
+
+let map={};
+
+filtered.forEach(s=>{
+
+let key=s.sdms||s.name;
+
+if(!map[key]) map[key]={student:s,total:0};
+
+if(terms.includes(s.term)) map[key].total+=total(s);
+
+});
+
+let arr=Object.values(map);
+
+let max=subjects.length*100*terms.length;
+
+arr.forEach(x=>{
+
+x.percent=Math.round((x.total/max)*100);
+
+});
+
+arr.sort((a,b)=>b.percent-a.percent);
+
+return arr;
+}
+
+function buildTable(all,terms){
+
+let isAnnual=terms.length===3;
+
+let html=`<table class="table-report"><tr><th>SUBJECT</th>`;
+
+terms.forEach(t=>html+=`<th colspan="5">${t}</th>`);
+
+if(isAnnual) html+=`<th colspan="2">ANNUAL TERMS AVG</th>`;
+
+html+=`</tr><tr><th></th>`;
+
+terms.forEach(()=>html+=`<th>MID</th><th>EXAM</th><th>TOTAL</th><th>AVG %</th><th>REMARK</th>`);
+
+if(isAnnual) html+=`<th>AVG %</th><th>REMARK</th>`;
+
+html+=`</tr>`;
+
+let grand={};
+
+terms.forEach(t=>grand[t]=0);
+
+subjects.forEach(sub=>{
+
+html+=`<tr><td class="subject-col">${sub}</td>`;
+
+let annualSum=0,annualCount=0;
+
+terms.forEach(t=>{
+
+let r=all.find(x=>x.term===t);
+
+if(r){
+
+let m=r.marks[sub];
+
+let max=(sub==="P.E"||sub==="C.A")?20:100;
+
+let totalScore=m.mid+m.exam;
+
+let avg=Math.round((totalScore/max)*100);
+
+grand[t]+=avg;
+
+annualSum+=avg;
+
+annualCount++;
+
+html+=`
+<td>${m.mid}</td>
+<td>${m.exam}</td>
+<td>${totalScore}</td>
+<td>${avg}%</td>
+<td>${remark(avg)}</td>
+`;
+
+}else{
+
+html+=`<td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>`;
+}
+
+});
+
+if(isAnnual){
+
+let annAvg=Math.round(annualSum/annualCount);
+
+html+=`
+<td>${annAvg}%</td>
+<td>${remark(annAvg)}</td>
+`;
+}
+
+html+=`</tr>`;
+});
+
+html+=`<tr><td><b>TOTAL AVG</b></td>`;
+
+terms.forEach(t=>{
+
+let avg=Math.round(grand[t]/subjects.length);
+
+if(avg>100) avg=100;
+
+html+=`
+<td colspan="4">${avg}%</td>
+<td>${remark(avg)}</td>
+`;
+
+});
+
+if(isAnnual){
+
+let annTotal=0;
+
+for(let t of terms){
+annTotal+=Math.round(grand[t]/subjects.length);
+}
+
+let annAvg=Math.round(annTotal/terms.length);
+
+if(annAvg>100) annAvg=100;
+
+html+=`
+<td>${annAvg}%</td>
+<td>${remark(annAvg)}</td>
+`;
+}
+
+html+=`</tr>`;
+
+html+=`</table>`;
+
+return html;
+}
+
+function view(id){
+
+let students=JSON.parse(localStorage.getItem("students")||"[]");
+
+let s=students.find(x=>x.id==id);
+
+if(!s)return;
+
+let all=students.filter(x=>
+x.name===s.name &&
+x.class===s.class &&
+(x.sdms===s.sdms)
+);
+
+let terms=[];
+
+if(s.term==="TERM1") terms=["TERM1"];
+if(s.term==="TERM2") terms=["TERM1","TERM2"];
+if(s.term==="TERM3") terms=["TERM1","TERM2","TERM3"];
+
+let posList=rank(students,s.class,terms);
+
+let position=posList.findIndex(
+x=>x.student.sdms===s.sdms||x.student.name===s.name
+)+1;
+
+let outOf=posList.length;
+
+let html=`
+
+<div class="report">
+
+<div class="header-top">PUPIL REPORT CARD</div>
+
+<div class="sub-header">TERM SYSTEM REPORT</div>
+
+<div class="line-input">
+NAME <span>${s.name}</span>
+CLASS <span>${s.class}</span>
+</div>
+
+<div class="line-input">
+TERM VIEW <span>${terms.join(" + ")}</span>
+</div>
+
+<div class="line-input">
+POSITION <span>${position}</span>
+OUT OF <span>${outOf}</span>
+</div>
+
+<div class="line-input">
+SDMS <span>${s.sdms||"-"}</span>
+</div>
+
+<div class="term-title">SUBJECT RESULTS</div>
+
+`;
+
+html+=buildTable(all,terms);
+
+html += `
+
+<br><br>
+
+<div style="border:1px solid #000;padding:10px;font-size:12px;line-height:1.6">
+
+<p>
+<b>Daily Class Work:</b> ____________________ 
+<b>Daily attendance:</b> ____________________
+</p>
+
+<p>
+<b>Class teacher’s report:</b>
+____________________________________________
+</p>
+
+<p>
+<b>Sign and date:</b> ____________________ 
+<b>Next term begins on:</b> ____________
+</p>
+
+<p>
+<b>School fees:</b> 55,000frw 
+<b>Debt:</b> ____________ 
+<b>Crayons:</b> 1 packet
+</p>
+
+<p>
+<b>Books:</b> 9 
+<b>Pencils:</b> 12 
+<b>Toilet papers:</b> 2
+</p>
+
+<p>
+<b>Head teacher’s report:</b>
+____________________________________________
+</p>
+
+</div>
+
+`;
+
+html+=`
+
+<br>
+
+<button onclick="editMarks(${s.id})">Edit Marks</button>
+
+<button onclick="window.print()">Print</button>
+
+<button onclick="hideReport()">Hide Report</button>
+
+</div>
+
+`;
+
+document.getElementById("report").innerHTML=html;
+}
+
+function clearForm(){
+
+document.getElementById("name").value="";
+document.getElementById("class").value="";
+document.getElementById("sdms").value="";
+
+render();
+}
+
+function hideReport(){
+
+document.getElementById("report").innerHTML="";
+}
+
+function editMarks(id){
+
+let students=JSON.parse(localStorage.getItem("students")||"[]");
+
+let s=students.find(x=>x.id==id);
+
+if(!s) return;
+
+document.getElementById("name").value=s.name;
+document.getElementById("class").value=s.class;
+document.getElementById("sdms").value=s.sdms||"";
+document.getElementById("term").value=s.term;
+
+subjects.forEach(sub=>{
+
+let m=s.marks[sub]||{mid:0,exam:0};
+
+document.getElementById(sub+"_mid").value=m.mid;
+document.getElementById(sub+"_exam").value=m.exam;
+
+});
+
+students=students.filter(x=>x.id!=id);
+
+localStorage.setItem("students",JSON.stringify(students));
+
+load();
+
+window.scrollTo(0,0);
+
+alert("Edit marks and click Save Student");
+}
+
+function addSubject(){
+
+let sub=prompt("Enter new subject name");
+
+if(!sub) return;
+
+sub=sub.toUpperCase();
+
+if(subjects.includes(sub)){
+
+alert("Subject exists");
+
+return;
+}
+
+subjects.push(sub);
+
+render();
+
+alert(sub+" added");
+}
+
+render();
+load();
+checkLogin();
+
+</script>
+
+</body>
+</html>

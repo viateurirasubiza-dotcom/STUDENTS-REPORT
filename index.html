@@ -842,6 +842,14 @@ OUT OF <span>${outOf}</span>
 <div class="line-input">
 SDMS <span>${s.sdms||"-"}</span>
 </div>
+<div class="line-input">
+ACADEMIC YEAR 
+<span>
+${new Date().getMonth()+1 >= 1
+? new Date().getFullYear()+"/"+(new Date().getFullYear()+1)
+: (new Date().getFullYear()-1)+"/"+new Date().getFullYear()}
+</span>
+</div>
 
 <div class="term-title">SUBJECT RESULTS</div>
 
@@ -871,15 +879,18 @@ ____________________________________________
 </p>
 
 <p>
-<b>School fees:</b> 55,000frw 
+<b>School fees:</b> ____________________
+</p>
 <b>Debt:</b> ____________ 
-<b>Crayons:</b> 1 packet
+<b>Crayons:</b> ____________________
 </p>
 
 <p>
-<b>Books:</b> 9 
-<b>Pencils:</b> 12 
-<b>Toilet papers:</b> 2
+<b>Books:</b> ____________________
+</p>
+<b>Pencils:</b> ____________________
+</p>
+<b>Toilet papers:</b> ____________________
 </p>
 
 <p>
